@@ -1,0 +1,22 @@
+<h1>Week <%= week.id %> </h1>
+
+<% form_for @week do |f| %>
+  <% @games.each do |game| %>
+    <%= f.field_for :games do |f| %>
+      <div>
+        <%= f.label :away_team_id, "Away Team" %>
+        <%= f.text_field :away_team_id %>
+      </div>
+
+      <div>
+        <%= f.label :home_team_d, "Home Team" %>
+        <%= f.text_field :home_team_id %>
+      </div>
+
+      <div>
+        <%= f.label :date, "Date" %>
+        <%= f.text_field :date %>
+      </div>
+    <% end %>  
+  <% end %>
+<% end %>

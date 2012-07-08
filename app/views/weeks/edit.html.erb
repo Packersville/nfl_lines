@@ -1,0 +1,26 @@
+<h1> Week <%= @current_week %> </h1>
+
+<%= form_for "user_picks[]", :url => submit_user_picks_week_path(@week) do |f| %>
+  <table>
+    <thead>
+      <tr>
+        <td>Game</td>
+        <td>Away Team</td>
+        <td></td>
+        <td>Home Team</td>
+        <td>Spread</td>
+      </tr>
+    </thead>
+    <% @user_picks.each_with_index do |user_pick, index| %>
+      <tr>
+        <td><%= index + 1%></td>
+        <td><%= user_pick.game.away_team_id %></td>
+        <td>vs.</td>
+        <td><%= user_pick.game.home_team_id %></td>
+        <%= f.fields_for user_pick do |user_pick_form| %>
+          <td><%= user_pick_form.text_field :spread %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
